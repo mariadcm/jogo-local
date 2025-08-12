@@ -15,15 +15,20 @@ public class TcpClientUnity : MonoBehaviour
         sendButton.onClick.AddListener(SendMessageToServer);
     }
 
-    void SendMessageToServer()
+    public void SendMessageToServer()
     {
         string mensagem = input.text;
         if (string.IsNullOrWhiteSpace(mensagem)) return;
 
-        TcpClient client = new TcpClient("127.0.0.1", 8080);
+        Debug.Log(mensagem);
+        
+        TcpClient client = new TcpClient("10.57.10.22", 8080);
         NetworkStream stream = client.GetStream();
         byte[] data = Encoding.UTF8.GetBytes(mensagem);
         stream.Write(data, 0, data.Length);
+        
+        Debug.Log(stream.WriteTimeout);
+        
         stream.Close();
         client.Close();
     }
