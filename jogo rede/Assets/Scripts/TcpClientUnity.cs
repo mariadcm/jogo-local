@@ -27,7 +27,7 @@ public class TcpClientUnity : MonoBehaviour
         byte[] data = Encoding.UTF8.GetBytes(mensagem);
         stream.Write(data, 0, data.Length);
         
-        Debug.Log(stream.WriteTimeout);
+        Debug.Log(stream.CanWrite);
         
         stream.Close();
         client.Close();
